@@ -240,6 +240,8 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
           Expanded(
             child: GridView.count(
               padding: EdgeInsets.all(10.0),
+              mainAxisSpacing: 10.0,
+              crossAxisSpacing: 10.0,
               crossAxisCount: 2,
               children: List.generate(widget.restaurant.menu.length, (index) {
                 Food food = widget.restaurant.menu[index];
