@@ -65,7 +65,13 @@ class _CartScreenState extends State<CartScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  setState(() {
+                                    if (order.quantity > 0) {
+                                      order.quantity--;
+                                    }
+                                  });
+                                },
                                 child: Text(
                                   '-',
                                   style: TextStyle(
@@ -83,7 +89,13 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  setState(() {
+                                    if (order.quantity < 7) {
+                                      order.quantity++;
+                                    }
+                                  });
+                                },
                                 child: Text(
                                   '+',
                                   style: TextStyle(
@@ -116,6 +128,21 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
           ),
+           Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: IconButton(
+                onPressed: () {
+                  setState(() {
+                    currentUser.cart.forEach((element) { 
+                      if (element.food.name == order.food.name) {
+                        currentUser.cart.remove(element);
+                      }
+                    });
+                  });
+                },
+                icon: Icon(Icons.delete),
+                constraints: BoxConstraints(maxHeight: 8, maxWidth: 8),
+              ))
         ],
       ),
     );
